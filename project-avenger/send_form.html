@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>India Post Parcel Delivery</title>
+  <link rel="stylesheet" href="send_form.css">
+  <style>
+    
+  </style>
+</head>
+<body>
+  <header>
+    India Post Parcel Delivery
+  </header>
+
+  <main>
+    <div class="progress-container">
+      <div class="progress-bar">
+        <div class="progress-bar-fill"></div>
+      </div>
+
+      <div class="progress-step" id="step1">
+        <div class="icon">📦</div>
+        <div class="step-label">Sender Details</div>
+      </div>
+      <div class="progress-step" id="step2">
+        <div class="icon">🏡</div>
+        <div class="step-label">Receiver Details</div>
+      </div>
+      <div class="progress-step" id="step3">
+        <div class="icon">📅</div>
+        <div class="step-label">Time Slot</div>
+      </div>
+    </div>
+
+    <section id="booking-form">
+      <form id="parcelForm">
+        <!-- Step 1: Sender Details -->
+        <div id="senderDetails" class="step active">
+          <h3>Sender Details</h3>
+          <div class="form-group">
+            <label for="sender_id">Customer Id:</label>
+            <input type="text" id="sender_id" name="sender_id" required>
+          </div>
+          <div class="form-group">
+            <label for="sender_name">Sender's Name:</label>
+            <input type="text" id="sender_name" name="sender_name" required>
+          </div>
+          <div class="form-group">
+            <label for="sender_contact">Sender's Contact:</label>
+            <input type="tel" id="sender_contact" name="sender_contact" required>
+          </div>
+          <div class="form-group">
+            <label for="sender_state">Sender's State:</label>
+            <select id="sender_state" name="sender_state" required onchange="updateDistricts()">
+              <option value="">Select State/UT</option>
+              <option value="Andhra Pradesh">Andhra Pradesh</option>
+              <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+              <option value="Assam">Assam</option>
+              <option value="Bihar">Bihar</option>
+              <option value="Chhattisgarh">Chhattisgarh</option>
+              <option value="Goa">Goa</option>
+              <option value="Gujarat">Gujarat</option>
+              <option value="Haryana">Haryana</option>
+              <option value="Himachal Pradesh">Himachal Pradesh</option>
+              <option value="Jharkhand">Jharkhand</option>
+              <option value="Karnataka">Karnataka</option>
+              <option value="Kerala">Kerala</option>
+              <option value="Madhya Pradesh">Madhya Pradesh</option>
+              <option value="Maharashtra">Maharashtra</option>
+              <option value="Manipur">Manipur</option>
+              <option value="Meghalaya">Meghalaya</option>
+              <option value="Mizoram">Mizoram</option>
+              <option value="Nagaland">Nagaland</option>
+              <option value="Odisha">Odisha</option>
+              <option value="Punjab">Punjab</option>
+              <option value="Rajasthan">Rajasthan</option>
+              <option value="Sikkim">Sikkim</option>
+              <option value="Tamil Nadu">Tamil Nadu</option>
+              <option value="Telangana">Telangana</option>
+              <option value="Tripura">Tripura</option>
+              <option value="Uttar Pradesh">Uttar Pradesh</option>
+              <option value="Uttarakhand">Uttarakhand</option>
+              <option value="West Bengal">West Bengal</option>
+              <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+              <option value="Chandigarh">Chandigarh</option>
+              <option value="Dadra and Nagar Haveli and Daman and Diu">Dadra and Nagar Haveli and Daman and Diu</option>
+              <option value="Delhi">Delhi</option>
+              <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+              <option value="Ladakh">Ladakh</option>
+              <option value="Lakshadweep">Lakshadweep</option>
+              <option value="Puducherry">Puducherry</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="sender_district">Sender's District:</label>
+            <select id="sender_district" name="sender_district" required>
+              <option value="">Select District</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="address">Sender's Address:</label>
+            <textarea id="address" name="sender_address" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="sender_pincode">Sender's Pincode:</label>
+            <input type="text" id="sender_pincode" name="sender_pincode" required>
+          </div>
+
+          <div class="button-container">
+            <button type="button" id="next1">Next</button>
+          </div>
+        </div>
+
+        <!-- Step 2: Receiver Details -->
+        <div id="receiverDetails" class="step">
+          <h3>Receiver Details</h3>
+          <div class="form-group">
+            <label for="recipient_name">Recipient's Name:</label>
+            <input type="text" id="recipient_name" name="recipient_name" required>
+          </div>
+          <div class="form-group">
+            <label for="recipient_contact">Recipient's Contact:</label>
+            <input type="tel" id="recipient_contact" name="recipient_contact" required>
+          </div>
+          <div class="form-group">
+            <label for="recipient_state">Recipient's State:</label>
+            <select id="recipient_state" name="recipient_state" required onchange="updateDis()">
+              <option value="">Select State/UT</option>
+              <option value="Andhra Pradesh">Andhra Pradesh</option>
+              <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+              <option value="Assam">Assam</option>
+              <option value="Bihar">Bihar</option>
+              <option value="Chhattisgarh">Chhattisgarh</option>
+              <option value="Goa">Goa</option>
+              <option value="Gujarat">Gujarat</option>
+              <option value="Haryana">Haryana</option>
+              <option value="Himachal Pradesh">Himachal Pradesh</option>
+              <option value="Jharkhand">Jharkhand</option>
+              <option value="Karnataka">Karnataka</option>
+              <option value="Kerala">Kerala</option>
+              <option value="Madhya Pradesh">Madhya Pradesh</option>
+              <option value="Maharashtra">Maharashtra</option>
+              <option value="Manipur">Manipur</option>
+              <option value="Meghalaya">Meghalaya</option>
+              <option value="Mizoram">Mizoram</option>
+              <option value="Nagaland">Nagaland</option>
+              <option value="Odisha">Odisha</option>
+              <option value="Punjab">Punjab</option>
+              <option value="Rajasthan">Rajasthan</option>
+              <option value="Sikkim">Sikkim</option>
+              <option value="Tamil Nadu">Tamil Nadu</option>
+              <option value="Telangana">Telangana</option>
+              <option value="Tripura">Tripura</option>
+              <option value="Uttar Pradesh">Uttar Pradesh</option>
+              <option value="Uttarakhand">Uttarakhand</option>
+              <option value="West Bengal">West Bengal</option>
+              <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+              <option value="Chandigarh">Chandigarh</option>
+              <option value="Dadra and Nagar Haveli and Daman and Diu">Dadra and Nagar Haveli and Daman and Diu</option>
+              <option value="Delhi">Delhi</option>
+              <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+              <option value="Ladakh">Ladakh</option>
+              <option value="Lakshadweep">Lakshadweep</option>
+              <option value="Puducherry">Puducherry</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="recipient_district">Recipient's District:</label>
+            <select id="recipient_district" name="recipient_district" required>
+              <option value="">Select District</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="recipient_address">Recipient's Address:</label>
+            <textarea id="recipient_address" name="recipient_address" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="recipient_pincode">Recipient's Pincode:</label>
+            <input type="text" id="recipient_pincode" name="recipient_pincode" required>
+          </div>
+
+          <div class="button-container">
+            <button type="button" id="prev2">Previous</button>
+            <button type="button" id="next2">Next</button>
+          </div>
+        </div>
+
+        <!-- Step 3: Time Slot -->
+        <div id="serviceSelection" class="step">
+          <h3>Select Service Type</h3>
+          <div class="form-group">
+              <label for="serviceType">Choose an option:</label>
+              <select id="serviceType" name="service_type" required onchange="toggleForm()">
+                  <option value="">Select an option</option>
+                  <option value="delivery">Delivery</option>
+                  <option value="pickup_delivery">Pick-up and Delivery</option>
+              </select>
+          </div>
+          <div id="timeSlotDetails" class="step" style="display: none;">
+            <h3>Choose Pick-up and Delivery Date and Time Slot</h3>
+        
+            <!-- Preferred Pick-up Date and Time Slot -->
+            <div class="form-group" id="pickupSection" style="display: none;">
+                <label for="pickup_date">Preferred Pick-up Date:</label>
+                <input type="date" id="pickup_date" name="pickup_date">
+            </div>
+        
+            <div class="form-group" id="pickupTimeSection" style="display: none;">
+              <label for="pickup_timeSlot">Available Pick-up Time Slots:</label>
+              <div id="pickup_timeSlot" name="pickup_time_slot">
+                  <button type="button" class="time-slot-btn" value="09:00 AM-10:00 AM">09:00 AM - 10:00 AM</button>
+                  <button type="button" class="time-slot-btn" value="10:00 AM-11:00 AM">10:00 AM - 11:00 AM</button>
+                  <button type="button" class="time-slot-btn" value="11:00 AM-12:00 PM">11:00 AM - 12:00 PM</button>
+                  <button type="button" class="time-slot-btn" value="12:00 PM-01:00 PM">12:00 PM - 01:00 PM</button>
+                  <button type="button" class="time-slot-btn" value="01:00 PM-02:00 PM">01:00 PM - 02:00 PM</button>
+                  <button type="button" class="time-slot-btn" value="02:00 PM-03:00 PM">02:00 PM - 03:00 PM</button>
+                  <button type="button" class="time-slot-btn" value="03:00 PM-04:00 PM">03:00 PM - 04:00 PM</button>
+                  <button type="button" class="time-slot-btn" value="04:00 PM-05:00 PM">04:00 PM - 05:00 PM</button>
+              </div>
+            </div>
+          
+        
+            <!-- Preferred Delivery Date and Time Slot -->
+            <div class="form-group">
+              <label for="delivery_date">Preferred Delivery Date:</label>
+              <input type="date" id="delivery_date" name="delivery_date" required>
+            </div>
+          
+            <div class="form-group" id="delivery_timeSlot" style="display: none;">
+              <label for="delivery_timeSlot">Available Delivery Time Slots:</label>
+              <div id="time_slot_buttons">
+                  <button type="button" class="time-slot-btn" value="09:00 AM-10:00 AM">09:00 AM - 10:00 AM</button>
+                  <button type="button" class="time-slot-btn" value="10:00 AM-11:00 AM">10:00 AM - 11:00 AM</button>
+                  <button type="button" class="time-slot-btn" value="11:00 AM-12:00 PM">11:00 AM - 12:00 PM</button>
+                  <button type="button" class="time-slot-btn" value="12:00 PM-01:00 PM">12:00 PM - 01:00 PM</button>
+                  <button type="button" class="time-slot-btn" value="01:00 PM-02:00 PM">01:00 PM - 02:00 PM</button>
+                  <button type="button" class="time-slot-btn" value="02:00 PM-03:00 PM">02:00 PM - 03:00 PM</button>
+                  <button type="button" class="time-slot-btn" value="03:00 PM-04:00 PM">03:00 PM - 04:00 PM</button>
+                  <button type="button" class="time-slot-btn" value="04:00 PM-05:00 PM">04:00 PM - 05:00 PM</button>
+              </div>
+            </div>
+          </div>
+          <input type="hidden" id="selectedPickupTime" name="pickup_time_slot">
+          <input type="hidden" id="selectedDeliveryTime" name="delivery_time_slot">
+
+          <div class="button-container">
+            <button type="button" id="prev3">Previous</button>
+            <button type="button" id="submit">Confirm</button>
+          </div>
+          <div id="confirmationMessage" style="display: none; color: green;">
+            Your form has been submitted successfully!
+          </div> 
+        </div>
+      </form>
+    </section>
+  </main>
+  <div id="statusMessage"></div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      document.getElementById("submit").addEventListener("click", function() {
+        // Show the confirmation message
+        const confirmationMessage = document.getElementById("confirmationMessage");
+        confirmationMessage.style.display = "block";
+        
+        // Hide the confirmation message after 3 seconds
+        setTimeout(() => {
+          confirmationMessage.style.display = "none";
+        }, 3000);
+      });
+    });
+  </script>
+  <script src="send_form.js"></script>
+  
+</body>
+</html>

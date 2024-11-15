@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Slot</title>
+    <link rel="stylesheet" href="update_time.css">
+    <style>
+        .container { max-width: 600px; margin: auto; padding: 20px; text-align: center; }
+        .action-options { display: flex; justify-content: space-around; margin: 20px 0; }
+        .action-option { border: 1px solid #ccc; padding: 15px; border-radius: 5px; cursor: pointer; flex: 1; margin: 0 5px; transition: background-color 0.3s; }
+        .action-option:hover { background-color: #f0f0f0; }
+        .selected { background-color: #007bff; color: white; border-color: #007bff; }
+        .hidden { display: none; }
+        #message { margin-top: 20px; color: red; }
+        .button-container { display: flex; flex-wrap: wrap; justify-content: space-between; margin-top: 2rem; }
+        .time-slot-btn { padding: 10px; margin: 5px; border: 1px solid #ccc; background-color: red; cursor: pointer; border-radius: 5px; flex: 1 0 30%; max-width: 30%; box-sizing: border-box; }
+        .time-slot-btn.selected { background-color: #03903e; color: white; border-color: #007bff; }
+        .time-slot-btn:hover { background-color: #e79898; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Change Time Slot</h1>
+        <label for="Id">ID:</label>
+        <input type="text" id="Id" name="Id" required>
+
+        <label for="Option">Change time slot of:</label>
+        <div class="action-options" id="actionSelect">
+            <div class="action-option" data-value="pickup">Pickup</div>
+            <div class="action-option" data-value="delivery">Delivery</div>
+            <div class="action-option" data-value="return">Return Parcel</div>
+        </div>
+
+        <!-- Pickup Date & Time -->
+        <form id="pickupForm" class="hidden">
+            <label for="pickupDate">New Pickup Date:</label>
+            <input type="date" id="pickupDate" name="pickupDate">
+            <label for="pickupTimeSlot">Available Pickup Time Slot:</label>
+            <div id="pickupTimeSlot" class="button-container">
+                <button type="button" class="time-slot-btn" value="09:00 AM-10:00 AM">09:00 AM - 10:00 AM</button>
+                <button type="button" class="time-slot-btn" value="10:00 AM-11:00 AM">10:00 AM - 11:00 AM</button>
+                <button type="button" class="time-slot-btn" value="11:00 AM-12:00 PM">11:00 AM - 12:00 PM</button>
+                <button type="button" class="time-slot-btn" value="12:00 PM-01:00 PM">12:00 PM - 01:00 PM</button>
+                <button type="button" class="time-slot-btn" value="01:00 PM-02:00 PM">01:00 PM - 02:00 PM</button>
+                <button type="button" class="time-slot-btn" value="02:00 PM-03:00 PM">02:00 PM - 03:00 PM</button>
+                
+            </div>
+        </form>
+
+        <!-- Delivery Date & Time -->
+        <form id="deliveryForm" class="hidden">
+            <label for="deliveryDate">New Delivery Date:</label>
+            <input type="date" id="deliveryDate" name="deliveryDate">
+            <label for="deliveryTimeSlot">Available Delivery Time Slot:</label>
+            <div id="deliveryTimeSlot" class="button-container">
+                <button type="button" class="time-slot-btn" value="09:00 AM-10:00 AM">09:00 AM - 10:00 AM</button>
+                <button type="button" class="time-slot-btn" value="10:00 AM-11:00 AM">10:00 AM - 11:00 AM</button>
+                <button type="button" class="time-slot-btn" value="11:00 AM-12:00 PM">11:00 AM - 12:00 PM</button>
+                <button type="button" class="time-slot-btn" value="12:00 PM-01:00 PM">12:00 PM - 01:00 PM</button>
+                <button type="button" class="time-slot-btn" value="01:00 PM-02:00 PM">01:00 PM - 02:00 PM</button>
+                <button type="button" class="time-slot-btn" value="02:00 PM-03:00 PM">02:00 PM - 03:00 PM</button>
+                
+            </div>
+        </form>
+
+        <!-- Return Date & Time -->
+        <form id="returnForm" class="hidden">
+            <label for="returnDate">New Return Date:</label>
+            <input type="date" id="returnDate" name="returnDate">
+            <label for="returnTimeSlot">Available Return Time Slot:</label>
+            <div id="returnTimeSlot" class="button-container">
+                <button type="button" class="time-slot-btn" value="09:00 AM-10:00 AM">09:00 AM - 10:00 AM</button>
+                <button type="button" class="time-slot-btn" value="10:00 AM-11:00 AM">10:00 AM - 11:00 AM</button>
+                <button type="button" class="time-slot-btn" value="11:00 AM-12:00 PM">11:00 AM - 12:00 PM</button>
+                <button type="button" class="time-slot-btn" value="12:00 PM-01:00 PM">12:00 PM - 01:00 PM</button>
+                <button type="button" class="time-slot-btn" value="01:00 PM-02:00 PM">01:00 PM - 02:00 PM</button>
+                <button type="button" class="time-slot-btn" value="02:00 PM-03:00 PM">02:00 PM - 03:00 PM</button>
+                
+            </div>
+        </form>
+
+        <button id="submitBtn">Update Date and Time Slot</button>
+        <div id="message"></div>
+    </div>
+    
+    <script>
+        const actionOptions = document.querySelectorAll('.action-option');
+        const forms = {
+            pickup: document.getElementById('pickupForm'),
+            delivery: document.getElementById('deliveryForm'),
+            return: document.getElementById('returnForm')
+        };
+        let selectedAction = null;
+
+        actionOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                // Deselect other options and hide forms
+                actionOptions.forEach(opt => opt.classList.remove('selected'));
+                Object.values(forms).forEach(form => form.classList.add('hidden'));
+
+                // Select this option and show the corresponding form
+                this.classList.add('selected');
+                selectedAction = this.getAttribute('data-value');
+                forms[selectedAction].classList.remove('hidden');
+            });
+        });
+
+        // Add event listeners to time slot buttons to handle selection
+        document.querySelectorAll('.button-container').forEach(container => {
+            container.addEventListener('click', (e) => {
+                if (e.target.classList.contains('time-slot-btn')) {
+                    const buttons = container.querySelectorAll('.time-slot-btn');
+                    buttons.forEach(btn => btn.classList.remove('selected'));
+                    e.target.classList.add('selected');
+                }
+            });
+        });
+
+        document.getElementById('submitBtn').addEventListener('click', function() {
+            const deliveryId = document.getElementById('Id').value;
+            let selectedDate, selectedTime;
+
+            // Retrieve selected date and time based on action
+            if (selectedAction) {
+                const form = forms[selectedAction];
+                selectedDate = form.querySelector(`input[type="date"]`).value;
+                selectedTime = form.querySelector('.time-slot-btn.selected')?.value;
+
+                if (!selectedTime) {
+                    document.getElementById('message').innerText = 'Please select a time slot.';
+                    document.getElementById('message').style.color = 'red';
+                    return;
+                }
+
+                fetch('http://127.0.0.1:5000/update_time_slot', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        deliveryId: deliveryId,
+                        action: selectedAction,
+                        newDateSlot: selectedDate,
+                        availableTimeSlot: selectedTime
+                    })
+                })
+                .then(response => response.ok ? response.json() : Promise.reject())
+                .then(data => {
+                    document.getElementById('message').innerText = data.message || "Time slot updated successfully!";
+                    document.getElementById('message').style.color = 'green';
+                })
+                .catch(() => {
+                    document.getElementById('message').innerText = 'Error updating time slot. Please try again.';
+                    document.getElementById('message').style.color = 'red';
+                });
+            } else {
+                document.getElementById('message').innerText = 'Please select an action option.';
+            }
+        });
+    </script>
+</body>
+</html>

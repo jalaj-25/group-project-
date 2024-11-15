@@ -1,0 +1,110 @@
+#chatbotWindow {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 350px;
+    background-color: #f1f1f1;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: none;
+    flex-direction: column;
+  }
+
+  #chatbotHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ff5722;
+    padding: 10px;
+    color: white;
+    border-radius: 10px 10px 0 0;
+  }
+
+  #chatContent {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #chatMessages {
+    height: 300px;
+    overflow-y: auto;
+    background-color: white;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+
+  input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  .message {
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 8px;
+    max-width: 75%;
+  }
+
+  .user {
+    background-color: #d1e7dd;
+    align-self: flex-end;
+  }
+
+  .bot {
+    background-color: #ffeeba;
+    align-self: flex-start;
+  }
+
+  .suggestion-buttons {
+    display: flex;
+    justify-content: flex-start;
+    gap: 5px;
+  }
+
+  .suggestion-buttons button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .suggestion-buttons button:hover {
+    background-color: #0056b3;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  #chatbotFooter {
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #f8f9fa;
+    border-top: 1px solid #ddd;
+    border-radius: 0 0 10px 10px;
+  }
+
+  /* Button to open chatbot */
+  #openChatbotBtn {
+    position: fixed;
+    bottom: 60px;
+    right: 20px;
+    background-color: #ff5722;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  #openChatbotBtn:hover {
+    background-color: #e64a19;
+  }

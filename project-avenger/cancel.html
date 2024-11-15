@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cancel Parcel</title>
+    <link rel="stylesheet" href="cancel.css">
+    <style>
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .message {
+            display: none;
+            color: green;
+        }
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+
+        .time-slot-btn {
+            padding: 10px;
+            margin: 5px;
+            border: 1px solid #ccc;
+            background-color: red;
+            cursor: pointer;
+            border-radius: 5px;
+            flex: 1 0 30%;
+            max-width: 30%;
+            box-sizing: border-box;
+        }
+        
+        .time-slot-btn.selected {
+            background-color: #03903e;
+            color: white;
+            border-color: #007bff;
+        }
+        
+        .time-slot-btn:hover {
+            background-color: #e79898;
+        }
+        
+        .return-options {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Cancel Parcel</h2>
+        <!-- Dropdown to choose Pickup or Delivery -->
+        <div class="form-group">
+            <div class="form-group">
+                <label for="trackingNumber">ID:</label>
+                <input type="text" id="trackingNumber" name="trackingNumber" placeholder="Enter your delivery ID" required>
+            </div>
+            <label for="serviceType">Choose Service Type:</label>
+            <div id="serviceType" name="serviceType" class="button-container">
+                <button type="button" class="time-slot-btn" value="pickup">Pickup</button>
+                <button type="button" class="time-slot-btn" value="delivery">Delivery</button>
+            </div>
+        </div>
+
+        <form id="cancelParcelForm" style="display: none;">
+            <div class="form-group">
+                <label for="contact_number">Phone number:</label>
+                <input type="tel" id="contact_number" name="contact_number" placeholder="Enter your phone number" required>
+            </div>
+
+            <!-- New section for return options, displayed only if "Delivery" is selected -->
+            <div class="form-group return-options" id="returnOptions">
+                <label>Choose Return Option:</label>
+                <div>
+                    <input type="radio" id="returnHome" name="returnOption" value="home" required>
+                    <label for="returnHome">Return to sender's home</label>
+                </div>
+                <div>
+                    <input type="radio" id="returnPostOffice" name="returnOption" value="post_office" required>
+                    <label for="returnPostOffice">Return to sender's post office</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="reason">Reason for Cancellation:</label>
+                <textarea id="reason" name="reason" rows="4" placeholder="State your reason for cancellation" required></textarea>
+            </div>
+
+            <button type="submit">Cancel Parcel</button>
+        </form>
+        <div class="message" id="cancelMessage">Your parcel has been successfully canceled.</div>
+    </div>
+
+    <script src="cancel.js"></script>
+    <script>
+        const serviceTypeButtons = document.querySelectorAll('.time-slot-btn');
+        const cancelParcelForm = document.getElementById('cancelParcelForm');
+        const returnOptions = document.getElementById('returnOptions');
+        const cancelMessage = document.getElementById('cancelMessage');
+
+        // Add event listener to each button for service type selection
+        serviceTypeButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove 'selected' class from all buttons
+                serviceTypeButtons.forEach(btn => btn.classList.remove('selected'));
+                
+                // Add 'selected' class to clicked button
+                this.classList.add('selected');
+
+                // Display the form
+                cancelParcelForm.style.display = 'block';
+
+                // Show return options if "Delivery" is selected, otherwise hide it
+                if (this.value === "delivery") {
+                    returnOptions.style.display = 'block';
+                } else {
+                    returnOptions.style.display = 'none';
+                }
+            });
+        });
+
+        // Add form submit event
+        cancelParcelForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            // Perform cancellation logic here
+            cancelMessage.style.display = 'block';
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Postman Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .container {
+            width: 60%;
+            max-width: 1200px;
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .result-container {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e9ecef;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .delivery-box, .pickup-box {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #fff; /* Initial white background */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s; /* Smooth transition */
+        }
+
+        .delivery-box.done, .pickup-box.done {
+            background-color: #e2f3e2; /* Green background after OTP submission */
+        }
+
+        .delivery-details, .pickup-details {
+            width: 70%;
+        }
+
+        .postman-details {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .postman-info {
+            width: 70%;
+        }
+
+        .profile-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-left: 20px;
+        }
+
+        .delivery-box button, .pickup-box button {
+            margin-left: 10px;
+        }
+
+        .otp-input {
+            display: none;
+            margin-top: 10px;
+        }
+
+        .otp-input input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            font-size: 16px;
+        }
+
+        .buttons {
+            display: flex;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 100%;
+                position: relative;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>POSTMAN ROUTINE</h1>
+        <div id="result" class="result-container"></div>
+    </div>
+
+    <script src="routine_show.js"></script>
+</body>
+</html>

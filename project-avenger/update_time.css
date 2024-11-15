@@ -1,0 +1,55 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background: #fff;
+    padding: 40px; /* Increase padding */
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Stronger shadow */
+    width: 1500px; /* Increase width */
+    
+}
+
+h1 {
+    margin-top: 0;
+    font-size: 1.5em; /* Slightly larger heading */
+}
+
+label {
+    display: block;
+    margin: 15px 0 8px; /* Increase margins for spacing */
+    font-size: 1.1em; /* Larger font size */
+}
+
+select, button, input {
+    width: 100%;
+    padding: 12px; /* Increase padding */
+    margin-bottom: 15px; /* More space between elements */
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1.1em; /* Larger input text */
+}
+
+button {
+    background-color: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1em; /* Larger button text */
+}
+
+button:hover {
+    background-color: darkred; /* Slightly darker on hover */
+}
+
+#message {
+    margin-top: 15px;
+    font-size: 1.1em; /* Larger message text */
+}

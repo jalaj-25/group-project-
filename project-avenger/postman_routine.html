@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Postman Lookup</title>
+    <style>
+        /* CSS code */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 400px; /* Increased width */
+            margin: 100px auto;
+            padding: 30px; /* Increased padding */
+            background-color: #fff;
+            border-radius: 10px; /* Slightly rounded corners */
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2); /* Deeper shadow for more depth */
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            font-size: 2em; /* Increased font size */
+            margin-bottom: 20px; /* Added margin for spacing */
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 10px;
+            color: #555; /* Softer color for labels */
+            font-size: 1.1em; /* Increased label font size */
+        }
+
+        input {
+            padding: 12px; /* Increased input padding */
+            margin-bottom: 25px; /* Increased margin for spacing */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em; /* Increased font size for inputs */
+        }
+
+        button {
+            padding: 12px; /* Increased button padding */
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em; /* Increased button font size */
+            transition: background-color 0.3s; /* Smooth transition effect */
+        }
+
+        button:hover {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>POSTMAN ROUTINE</h1>
+        <form id="lookupForm">
+            <label for="id">Enter ID:</label>
+            <input type="number" id="id" name="id" required>
+
+            <label for="pincode">Enter Pincode:</label>
+            <input type="text" id="pincode" name="pincode" required>
+
+            <label for="date">Select Delivery Date:</label>
+            <input type="date" id="date" name="date" required>
+
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('lookupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const id = document.getElementById('id').value;
+            const pincode = document.getElementById('pincode').value;
+            const date = document.getElementById('date').value;
+
+            // Store form data in localStorage
+            localStorage.setItem('id', id);
+            localStorage.setItem('pincode', pincode);
+            localStorage.setItem('date', date);
+
+            // Navigate to the results page
+            window.location.href = 'routine_show.html';
+        });
+    </script>
+</body>
+</html>

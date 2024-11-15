@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>India Post Chatbot</title>
+  <link rel="stylesheet" href="chatbot.css">
+  <style>
+  </style>
+</head>
+<body>
+
+  <!-- Button to open chatbot -->
+  <button id="openChatbotBtn" onclick="toggleChatbot()">Open Chatbot</button>
+
+  <!-- Chatbot window -->
+  <div id="chatbotWindow">
+    <div id="chatbotHeader">
+      <h3>India Post Assistant</h3>
+      <button id="closeBtn" onclick="closeChatbot()">X</button>
+    </div>
+    <div id="chatContent">
+      <div id="chatMessages"></div>
+      <div class="suggestion-buttons" id="quickReplies">
+        <!-- Quick reply buttons will appear here -->
+      </div>
+    </div>
+    <div id="chatbotFooter">
+      <input type="text" id="userInput" placeholder="Type your message here..." onkeypress="sendMessage(event)">
+    </div>
+  </div>
+  <script src="chatbot.js"></script>
+
+ 
+</body>
+</html>

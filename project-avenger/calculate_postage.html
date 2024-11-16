@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculate Postage</title>
+    <link rel="stylesheet" href="calculate_postage.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1>Calculate Postage</h1>
+            <p>Fast, Accurate, and Reliable Postage Calculator</p>
+        </div>
+    </header>
+    <main class="main-content">
+        <section class="calculator-section">
+            <div class="container">
+                <h2>Postage Calculator</h2>
+                <form action="#" method="post" class="postage-form">
+                    <label for="weight">Package Weight (in kg):</label>
+                    <input type="number" id="weight" name="weight" placeholder="Enter weight" required min="0.1" step="0.1">
+
+                    <label for="destination">Destination:</label>
+                    <select id="destination" name="destination" required>
+                        <option value="" disabled selected>Select destination</option>
+                        <option value="domestic">Domestic</option>
+                        <option value="international">International</option>
+                    </select>
+
+                    <label for="delivery-type">Delivery Type:</label>
+                    <select id="delivery-type" name="delivery-type" required>
+                        <option value="" disabled selected>Select delivery type</option>
+                        <option value="Standard">Standard</option>
+                        <option value="Express">Express</option>
+                        <option value="Eco-Friendly">Eco-Friendly</option>
+                    </select>
+
+                    <button type="submit" class="calculate-btn">Calculate Postage</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Result Section -->
+        <section class="result-section">
+            <div class="container">
+                <h3>Postage Cost:</h3>
+                <p id="result"></p> <!-- Result will be displayed here -->
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Nationwide Hackathon. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelector('.postage-form').addEventListener('submit', function(event) {
+        event.preventDefault();  // Prevent form submission
+            
+        // Retrieve form values
+        const weight = parseFloat(document.getElementById('weight').value);
+        const destination = document.getElementById('destination').value;
+        const deliveryType = document.getElementById('delivery-type').value;
+            
+        // Validate weight input
+        if (isNaN(weight) || weight <= 0) {
+            alert('Please enter a valid weight greater than 0.');
+            return;
+        }
+    
+        // Define rates for different conditions
+        let rate = 0;
+    
+        if (destination === 'domestic') {
+            if (deliveryType === 'Standard') {
+                rate = 5;
+            } else if (deliveryType === 'Express') {
+                rate = 10;
+            } else if (deliveryType === 'Eco-Friendly') {
+                rate = 4;
+            }
+        } else if (destination === 'international') {
+            if (deliveryType === 'Standard') {
+                rate = 15;
+            } else if (deliveryType === 'Express') {
+                rate = 25;
+            } else if (deliveryType === 'Eco-Friendly') {
+                rate = 12;
+            }
+        }
+    
+        // Calculate total postage cost based on weight
+        const totalCost = rate * weight;
+    
+        // Display the result in the result section
+        const resultElement = document.getElementById('result');
+        resultElement.textContent = `The total postage cost is $${totalCost.toFixed(2)}.`;
+    });
+
+    </script>
+</body>
+</html>

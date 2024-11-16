@@ -12,7 +12,7 @@
 <body>
   <header>
     India Post Parcel Delivery
-  </header>
+  </header> 
 
   <main>
     <div class="progress-container">
@@ -189,6 +189,20 @@
           </div>
         </div>
 
+        <!-- Add this to the Step 3 section (Time Slot) -->
+        <div id="deliveryTypeSelection" class="step">
+          <h3>Choose Delivery Speed</h3>
+          <div class="form-group">
+            <label for="deliverySpeed">Select delivery type:</label>
+            <select id="deliverySpeed" name="delivery_speed" required>
+              <option value="">Select delivery type</option>
+              <option value="fast">Express Delivery (₹200)</option>
+              <option value="medium">Standard Delivery (₹150)</option>
+              <option value="slow">Eco-friendly Delivery (₹100)</option>
+            </select>
+          </div>
+        </div>
+
         <!-- Step 3: Time Slot -->
         <div id="serviceSelection" class="step">
           <h3>Select Service Type</h3>
@@ -260,12 +274,23 @@
   </main>
   <div id="statusMessage"></div>
   <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      document.getElementById("submit").addEventListener("click", function() {
-        // Show the confirmation message
-        const confirmationMessage = document.getElementById("confirmationMessage");
+    document.addEventListener("DOMContentLoaded", function () {
+      const deliverySpeedSelect = document.getElementById("deliverySpeed");
+      const submitButton = document.getElementById("submit");
+      const confirmationMessage = document.getElementById("confirmationMessage");
+  
+      submitButton.addEventListener("click", function () {
+        // Check if a delivery speed is selected
+        if (!deliverySpeedSelect.value) {
+          alert("Please select a delivery type before confirming.");
+          return;
+        }
+  
+        // Show the confirmation message with delivery details
+        const selectedSpeed = deliverySpeedSelect.options[deliverySpeedSelect.selectedIndex].text;
+        confirmationMessage.textContent = `Your form has been submitted successfully! Selected Delivery Type: ${selectedSpeed}`;
         confirmationMessage.style.display = "block";
-        
+  
         // Hide the confirmation message after 3 seconds
         setTimeout(() => {
           confirmationMessage.style.display = "none";
@@ -273,6 +298,7 @@
       });
     });
   </script>
+  
   <script src="send_form.js"></script>
   
 </body>
